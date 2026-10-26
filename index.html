@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>GPA Calc — Semester &amp; Cumulative GPA Calculator (4.0, 4.3, 5.0, %) | S3eidat Tools</title>
+<meta name="description" content="Semester and cumulative GPA on 4.0, 4.3, 5.0 or percentage (35–100) scales, plus a what-GPA-do-I-need target calculator. Saved on your device. Free and private.">
+<meta property="og:title" content="GPA Calc — free, private GPA calculator">
+<meta property="og:description" content="Semester and cumulative GPA for students. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="gpa-calc">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>GPA Calc</h1>
+    <p>Add this semester's courses to get your semester and cumulative GPA, then find the average you need to reach a target. Saved on this device only.</p>
+  </section>
+
+  <div class="gp-grid">
+    <section class="card stack">
+      <div class="row between">
+        <h2>Courses</h2>
+        <label class="scale-l">Scale
+          <select class="select" id="scale">
+            <option value="4.0">4.0 (A–F with ±)</option>
+            <option value="4.3">4.3 (A+ = 4.3)</option>
+            <option value="5.0">5.0 (A+ = 5)</option>
+            <option value="pct">Percentage</option>
+          </select>
+        </label>
+      </div>
+      <div class="pct-range row" id="pct-range" hidden>
+        <span class="muted">Marks from</span>
+        <input class="input sm" id="pmin" inputmode="numeric" aria-label="Lowest mark">
+        <span class="muted">to</span>
+        <input class="input sm" id="pmax" inputmode="numeric" aria-label="Highest mark">
+        <span class="faint">(Jordanian universities often use 35–100)</span>
+      </div>
+      <div class="head-row" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span></span></div>
+      <div id="courses" class="courses"></div>
+      <div class="row between">
+        <button type="button" class="btn" id="add"><svg class="i"><use href="#i-plus"/></svg>Add course</button>
+        <button type="button" class="btn ghost small" id="clear"><svg class="i"><use href="#i-trash"/></svg>Clear all</button>
+      </div>
+    </section>
+
+    <section class="card stack">
+      <div class="gpa-hero">
+        <div><small>Semester GPA</small><b id="sem">—</b><span id="sem-sub"></span></div>
+        <div><small>Cumulative GPA</small><b id="cum">—</b><span id="cum-sub"></span></div>
+      </div>
+      <h3 class="sub">Before this semester <span class="faint">(optional)</span></h3>
+      <div class="grid-2 tight">
+        <label class="field">Credits completed <input class="input" id="pcr" inputmode="decimal" autocomplete="off" placeholder="0"></label>
+        <label class="field">Cumulative GPA <input class="input" id="pgpa" inputmode="decimal" autocomplete="off" placeholder="0.00"></label>
+      </div>
+      <hr class="sep">
+      <h3 class="sub">What do I need?</h3>
+      <div class="grid-2 tight">
+        <label class="field">Target cumulative <input class="input" id="tgt" inputmode="decimal" autocomplete="off"></label>
+        <label class="field">Upcoming credits <input class="input" id="rem" inputmode="decimal" autocomplete="off"></label>
+      </div>
+      <div class="need" id="need"></div>
+      <div class="row end"><button class="btn small" id="copy"><svg class="i"><use href="#i-copy"/></svg>Copy</button></div>
+      <p class="faint">Universities round and weight differently (repeated courses, pass/fail). Check your official transcript rules.</p>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
